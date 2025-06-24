@@ -69,12 +69,6 @@ header h1 {
     color: #000;
 }
 
-.fork-me {
-    position: absolute;
-    top: 0;
-    right: 0;
-    border: 0;
-}
 
 .main {
     margin: 1rem;
@@ -262,7 +256,7 @@ ul.tags {
     overflow-y: auto;
     /*Estilo de scrollbar para Firefox*/
     scrollbar-width: thin;
-    scrollbar-color: #cc0066 #fff; 
+    scrollbar-color: #cc0066 #fff;
 }
 
 ul.tags::-webkit-scrollbar {
