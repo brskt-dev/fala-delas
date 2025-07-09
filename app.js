@@ -17,7 +17,7 @@ var directive = {
             ".location": "mulher.location",
             "img.photo@alt": "mulher.name",
             "img.photo@src": function () {
-                return this.photo || generateGravatarUrl(this.email);
+                return this.photo || "img/logo.svg";
             },
             ".fb a@href": "https://facebook.com/#{mulher.fb}",
             ".fb@class": function () {
@@ -98,8 +98,6 @@ var filterCards = debounce(function ($cards, filter) {
 
     $filteredOutCards.hide();
     $filteredCards.show();
-
-    updateTweetButton($filteredCards);
 }, 200);
 
 // Cria um Contains para que ele seja case-insensitive e ignore acentuação
@@ -110,34 +108,6 @@ jQuery.expr[":"].Contains = function (element, i, arrFilter) {
 
     return (textContent || innerText).indexOf(filter) >= 0;
 };
-
-function updateTweetButton($cards) {
-    // Find twitter usernames
-    var usernames = $cards
-        .filter("[data-twitter]")
-        .map(function () {
-            return "@" + $(this).data("twitter");
-        })
-        .toArray();
-
-    // Remove previous button
-    var $ct = $("#speakers-mention-tweet").hide();
-    var $button = $ct.find(".twitter-button");
-
-    // Create new button if found twitter usernames
-    if (usernames.length >= 1) {
-        $ct.show();
-        $button.empty();
-
-        twttr.widgets.createShareButton("/", $button.get(0), {
-            text:
-                usernames.join(" ") +
-                " Gostaria de convidá-las a palestrar no evento ...",
-            lang: "pt_BR",
-            dnt: "true",
-        });
-    }
-}
 
 function debounce(func, wait, immediate) {
     var timeout;
@@ -173,16 +143,4 @@ function removeAccents(text) {
         .replace(/[óòôõÓ]/g, "o")
         .replace(/[úùûÚ]/g, "u")
         .toLowerCase();
-}
-
-function generateGravatarUrl(email) {
-    var hash = md5(email);
-    var placeholderImagePath =
-        "http://insideoutproject.xyz/mulheres-palestrantes/img/placeholder-female.jpg";
-    var imageURL =
-        "https://secure.gravatar.com/avatar/" +
-        hash +
-        "?r=PG&d=" +
-        placeholderImagePath;
-    return email ? imageURL : placeholderImagePath;
 }
