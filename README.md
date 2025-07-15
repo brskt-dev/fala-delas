@@ -14,8 +14,6 @@
 
 Criado como projeto de extensão no curso de Análise e Desenvolvimento de Sistemas (UNIP), o Fala Delas organiza perfis de mulheres dispostas a palestrar, com dados como nome, localização, áreas de interesse e redes públicas.
 
-A interface é leve, responsiva e baseada em tema escuro com detalhes em rosa vibrante.
-
 ---
 
 ## 💬 Feedback
